@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>ESSENTA — Оптовый прайс-лист на парфюмерные масла</title>
+<meta name="description" content="Оптовый прайс-лист на парфюмерные масла ESSENTA. 214 ароматов, 22 бренда. Алматы.">
+<meta property="og:title" content="ESSENTA — Оптовый прайс на парфюмерные масла">
+<meta property="og:description" content="214 ароматов · 22 бренда · цены за кг и себестоимость за мл">
+<style>
+:root{
+  --bg:#0e0d0b; --card:#171511; --line:#2a261f;
+  --gold:#c9a050; --gold-soft:#e8cf9b;
+  --text:#f0ece3; --muted:#9c937f;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;padding-bottom:90px}
+.wrap{max-width:760px;margin:0 auto;padding:0 14px}
+header{text-align:center;padding:34px 16px 20px}
+.logo{font-family:Georgia,'Times New Roman',serif;font-size:34px;letter-spacing:8px;color:var(--gold-soft);font-weight:400}
+.logo span{color:var(--gold)}
+.tagline{color:var(--muted);font-size:13px;margin-top:8px;letter-spacing:1px}
+.meta{display:flex;justify-content:center;gap:18px;margin-top:14px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.meta b{color:var(--gold-soft);font-weight:600}
+.sticky{position:sticky;top:0;z-index:50;background:rgba(14,13,11,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:10px 0 8px;border-bottom:1px solid var(--line)}
+.search{display:flex;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:0 12px}
+.search svg{flex:none;opacity:.5}
+.search input{flex:1;background:none;border:none;outline:none;color:var(--text);font-size:16px;padding:12px 10px}
+.search input::placeholder{color:var(--muted)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:10px 2px 4px;scrollbar-width:none;-ms-overflow-style:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;background:var(--card);border:1px solid var(--line);color:var(--muted);font-size:13px;padding:7px 14px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:.15s}
+.chip.on{background:var(--gold);border-color:var(--gold);color:#1a1407;font-weight:600}
+.brand{margin-top:26px}
+.brand h2{font-family:Georgia,serif;font-size:21px;font-weight:400;color:var(--gold-soft);letter-spacing:2px;display:flex;align-items:baseline;gap:10px}
+.brand h2 small{font-size:12px;color:var(--muted);letter-spacing:0;font-family:-apple-system,sans-serif}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-top:10px;overflow:hidden}
+.row{display:flex;align-items:center;padding:11px 14px;border-bottom:1px solid var(--line);gap:10px}
+.row:last-child{border-bottom:none}
+.row .nm{flex:1;font-size:14.5px;line-height:1.35}
+.row .p1{width:74px;text-align:right;font-size:14px;color:var(--gold-soft);font-variant-numeric:tabular-nums;font-weight:600}
+.row .p2{width:64px;text-align:right;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.cols{display:flex;padding:8px 14px 2px;gap:10px;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
+.cols .nm{flex:1}.cols .p1{width:74px;text-align:right}.cols .p2{width:64px;text-align:right}
+.empty{text-align:center;color:var(--muted);padding:60px 20px;display:none}
+.count{font-size:12px;color:var(--muted);margin-top:10px}
+footer{margin-top:44px;border-top:1px solid var(--line);padding:26px 16px;text-align:center;color:var(--muted);font-size:13px;line-height:1.7}
+footer a{color:var(--gold-soft);text-decoration:none}
+.wa{position:fixed;right:16px;bottom:16px;z-index:60;display:flex;align-items:center;gap:9px;background:#25d366;color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:13px 20px;border-radius:999px;box-shadow:0 6px 24px rgba(37,211,102,.4)}
+.note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;padding:12px 14px;margin-top:18px;font-size:13px;color:var(--muted);line-height:1.6}
+.note b{color:var(--text)}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">ESSE<span>NTA</span></div>
+  <div class="tagline">ОПТОВЫЙ ПРАЙС-ЛИСТ · ПАРФЮМЕРНЫЕ МАСЛА</div>
+  <div class="meta">
+    <div>Курс: <b>493.3 ₸/$</b></div>
+    <div>Обновлён: <b>2 июня 2026</b></div>
+    <div><b id="total"></b> ароматов</div>
+  </div>
+</header>
+
+<div class="sticky"><div class="wrap">
+  <div class="search">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#c9a050" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input id="q" type="search" placeholder="Поиск аромата или бренда…" autocomplete="off">
+  </div>
+  <div class="chips" id="chips"></div>
+</div></div>
+
+<main class="wrap">
+  <div class="count" id="count"></div>
+  <div id="list"></div>
+  <div class="empty" id="empty">Ничего не найдено.<br>Попробуйте изменить запрос.</div>
+  <div class="note"><b>₸/мл</b> — ваша себестоимость одного миллилитра готового аромата при покупке масла по этому прайсу. Цены указаны за килограмм масла.</div>
+</main>
+
+<footer>
+  Заказы и вопросы — WhatsApp <a href="https://wa.me/77021711777">+7 702 171 1777</a><br>
+  г. Алматы
+</footer>
+
+<a class="wa" href="https://wa.me/77021711777?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%9F%D0%B8%D1%88%D1%83%20%D0%BF%D0%BE%20%D0%BE%D0%BF%D1%82%D0%BE%D0%B2%D0%BE%D0%BC%D1%83%20%D0%BF%D1%80%D0%B0%D0%B9%D1%81%D1%83%20Essenta">
+  <svg width="19" height="19" viewBox="0 0 24 24" fill="#fff"><path d="M12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.8 1 3.8 1.5 5.8 1.5 6.6 0 12-5.4 12-12S18.6 0 12 0zm0 21.8c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.7 1 1-3.6-.2-.4c-1-1.6-1.5-3.4-1.5-5.2 0-5.4 4.4-9.8 9.9-9.8 5.4 0 9.8 4.4 9.8 9.8s-4.4 9.8-9.8 9.8zm5.4-7.3c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/></svg>
+  Заказать
+</a>
+
+<script>
+const DATA = [{"brand": "Armani", "name": "Stronger With You Tobacco", "usd_kg": 100.0, "kzt_ml": 49}, {"brand": "Armani", "name": "Aqua Di Gio", "usd_kg": 124.0, "kzt_ml": 61}, {"brand": "Armani", "name": "Si Passione", "usd_kg": 126.0, "kzt_ml": 62}, {"brand": "Armani", "name": "Si", "usd_kg": 129.0, "kzt_ml": 64}, {"brand": "Armani", "name": "Stronger With You Parfum", "usd_kg": 130.0, "kzt_ml": 64}, {"brand": "Armani", "name": "Acqua Di Gio Elixir", "usd_kg": 135.0, "kzt_ml": 67}, {"brand": "Armani", "name": "Stronger With You Oud", "usd_kg": 140.0, "kzt_ml": 69}, {"brand": "Armani", "name": "Acqua Di Gio Giorgio", "usd_kg": 146.0, "kzt_ml": 72}, {"brand": "Armani", "name": "Acqua Di Gio Profumo", "usd_kg": 148.0, "kzt_ml": 73}, {"brand": "Armani", "name": "My Way", "usd_kg": 165.0, "kzt_ml": 81}, {"brand": "Armani", "name": "Stronger With You", "usd_kg": 195.0, "kzt_ml": 96}, {"brand": "Armani", "name": "Stronger With You Intensely", "usd_kg": 215.0, "kzt_ml": 106}, {"brand": "Armani", "name": "Rose D'Arabie", "usd_kg": 225.0, "kzt_ml": 111}, {"brand": "Armani", "name": "Power Of You", "usd_kg": 270.0, "kzt_ml": 133}, {"brand": "Armani", "name": "Rose Milano", "usd_kg": 270.0, "kzt_ml": 133}, {"brand": "Armani", "name": "Stronger With You Spices 2026", "usd_kg": 300.0, "kzt_ml": 148}, {"brand": "Azzaro", "name": "Chrome", "usd_kg": 110.0, "kzt_ml": 54}, {"brand": "Azzaro", "name": "The Most Wanted Intense", "usd_kg": 115.0, "kzt_ml": 57}, {"brand": "Azzaro", "name": "The Most Wanted", "usd_kg": 250.0, "kzt_ml": 123}, {"brand": "Bvlgari", "name": "Man Rain Essence", "usd_kg": 125.0, "kzt_ml": 62}, {"brand": "Bvlgari", "name": "Onekh", "usd_kg": 236.0, "kzt_ml": 116}, {"brand": "Bvlgari", "name": "Falkar", "usd_kg": 236.0, "kzt_ml": 116}, {"brand": "Bvlgari", "name": "Tygar", "usd_kg": 285.0, "kzt_ml": 141}, {"brand": "Bvlgari", "name": "Yasep", "usd_kg": 360.0, "kzt_ml": 178}, {"brand": "Bvlgari", "name": "The Noir", "usd_kg": 395.0, "kzt_ml": 195}, {"brand": "Byredo", "name": "Bal D'Afrique", "usd_kg": 190.0, "kzt_ml": 94}, {"brand": "Byredo", "name": "Black Saffron", "usd_kg": 210.0, "kzt_ml": 104}, {"brand": "Byredo", "name": "Mojave Ghost", "usd_kg": 210.0, "kzt_ml": 104}, {"brand": "Byredo", "name": "Sellier", "usd_kg": 210.0, "kzt_ml": 104}, {"brand": "Byredo", "name": "Sundazed", "usd_kg": 215.0, "kzt_ml": 106}, {"brand": "Chanel", "name": "No 5", "usd_kg": 110.0, "kzt_ml": 54}, {"brand": "Chanel", "name": "Egoist Platinum", "usd_kg": 126.0, "kzt_ml": 62}, {"brand": "Chanel", "name": "Coco Mademoiselle Intense", "usd_kg": 135.0, "kzt_ml": 67}, {"brand": "Chanel", "name": "Eau Fraiche", "usd_kg": 138.0, "kzt_ml": 68}, {"brand": "Chanel", "name": "Chance Eau Tendre", "usd_kg": 147.0, "kzt_ml": 73}, {"brand": "Chanel", "name": "Allure Homme Sport", "usd_kg": 147.0, "kzt_ml": 73}, {"brand": "Chanel", "name": "Gabrielle", "usd_kg": 149.0, "kzt_ml": 74}, {"brand": "Chanel", "name": "Chance Eau de Toilette", "usd_kg": 166.0, "kzt_ml": 82}, {"brand": "Chanel", "name": "Bleu Le Parfum", "usd_kg": 170.0, "kzt_ml": 84}, {"brand": "Chanel", "name": "Bleu de Chanel", "usd_kg": 180.0, "kzt_ml": 89}, {"brand": "Chanel", "name": "Bleu de Chanel NEW 2025", "usd_kg": 180.0, "kzt_ml": 89}, {"brand": "Chanel", "name": "Coco Mademoiselle", "usd_kg": 188.0, "kzt_ml": 93}, {"brand": "Chanel", "name": "Sycomore", "usd_kg": 291.0, "kzt_ml": 144}, {"brand": "Chanel", "name": "Bleu L'Exclusif 2025", "usd_kg": 360.0, "kzt_ml": 178}, {"brand": "Chanel", "name": "Coromandel", "usd_kg": 375.0, "kzt_ml": 185}, {"brand": "Dior", "name": "Dior Homme Intense", "usd_kg": 100.0, "kzt_ml": 49}, {"brand": "Dior", "name": "Fahrenheit", "usd_kg": 120.0, "kzt_ml": 59}, {"brand": "Dior", "name": "Sauvage", "usd_kg": 124.0, "kzt_ml": 61}, {"brand": "Dior", "name": "Addict", "usd_kg": 148.0, "kzt_ml": 73}, {"brand": "Dior", "name": "Sauvage Elixir Premium", "usd_kg": 150.0, "kzt_ml": 74}, {"brand": "Dior", "name": "J'adore", "usd_kg": 162.0, "kzt_ml": 80}, {"brand": "Dior", "name": "Joy", "usd_kg": 165.0, "kzt_ml": 81}, {"brand": "Dior", "name": "Miss Dior Blooming Bouquet", "usd_kg": 171.0, "kzt_ml": 84}, {"brand": "Dior", "name": "Oud Ispahan", "usd_kg": 175.0, "kzt_ml": 86}, {"brand": "Dior", "name": "Miss Dior Cherie", "usd_kg": 176.0, "kzt_ml": 87}, {"brand": "Dior", "name": "Exclusive Bois Argent", "usd_kg": 186.0, "kzt_ml": 92}, {"brand": "Dior", "name": "New Look 2024", "usd_kg": 190.0, "kzt_ml": 94}, {"brand": "Dior", "name": "Rouge Trafalgar Esprit", "usd_kg": 200.0, "kzt_ml": 99}, {"brand": "Dior", "name": "Ambre Nuit", "usd_kg": 207.0, "kzt_ml": 102}, {"brand": "Dior", "name": "Dior Homme Parfum", "usd_kg": 210.0, "kzt_ml": 104}, {"brand": "Dior", "name": "Patchouli Elixir", "usd_kg": 230.0, "kzt_ml": 113}, {"brand": "Dior", "name": "Purple Oud", "usd_kg": 230.0, "kzt_ml": 113}, {"brand": "Dior", "name": "Bois Talisman 2025", "usd_kg": 230.0, "kzt_ml": 113}, {"brand": "Dior", "name": "Oud Rosewood", "usd_kg": 236.0, "kzt_ml": 116}, {"brand": "Dior", "name": "Vanilla Diorama", "usd_kg": 297.5, "kzt_ml": 147}, {"brand": "Dior", "name": "Gris Montaigne", "usd_kg": 320.0, "kzt_ml": 158}, {"brand": "Dior", "name": "Spice Blend", "usd_kg": 385.0, "kzt_ml": 190}, {"brand": "Dior", "name": "Poison Eau de Toilette", "usd_kg": 400.0, "kzt_ml": 197}, {"brand": "Creed", "name": "Green Irish Tweed", "usd_kg": 147.0, "kzt_ml": 73}, {"brand": "Creed", "name": "Aventus Cologne", "usd_kg": 170.0, "kzt_ml": 84}, {"brand": "Creed", "name": "Silver Mountain Water", "usd_kg": 175.0, "kzt_ml": 86}, {"brand": "Creed", "name": "Eladaria 2025", "usd_kg": 180.0, "kzt_ml": 89}, {"brand": "Creed", "name": "Carmina", "usd_kg": 212.0, "kzt_ml": 105}, {"brand": "Creed", "name": "Absolu Aventus", "usd_kg": 245.0, "kzt_ml": 121}, {"brand": "Creed", "name": "Oud Zarian 2025", "usd_kg": 250.0, "kzt_ml": 123}, {"brand": "Creed", "name": "Original Vetiver", "usd_kg": 250.0, "kzt_ml": 123}, {"brand": "Creed", "name": "Aventus Her", "usd_kg": 280.0, "kzt_ml": 138}, {"brand": "Creed", "name": "Dark Aventus", "usd_kg": 315.0, "kzt_ml": 155}, {"brand": "Creed", "name": "Aventus Premium", "usd_kg": 375.0, "kzt_ml": 185}, {"brand": "Creed", "name": "Royal Oud", "usd_kg": 407.5, "kzt_ml": 201}, {"brand": "Creed", "name": "Virgin Island Water", "usd_kg": 410.0, "kzt_ml": 202}, {"brand": "Creed", "name": "Aventus 390", "usd_kg": 565.0, "kzt_ml": 279}, {"brand": "D&G", "name": "The One", "usd_kg": 110.0, "kzt_ml": 54}, {"brand": "D&G", "name": "Light Blue Man", "usd_kg": 121.0, "kzt_ml": 60}, {"brand": "D&G", "name": "Light Blue", "usd_kg": 121.0, "kzt_ml": 60}, {"brand": "D&G", "name": "Light Blue Intense Man", "usd_kg": 121.0, "kzt_ml": 60}, {"brand": "D&G", "name": "The One For Her", "usd_kg": 140.0, "kzt_ml": 69}, {"brand": "D&G", "name": "Velvet Desert Oud", "usd_kg": 175.0, "kzt_ml": 86}, {"brand": "D&G", "name": "Velvet Infusion 2024", "usd_kg": 180.0, "kzt_ml": 89}, {"brand": "Gucci", "name": "Gucci Bloom", "usd_kg": 110.0, "kzt_ml": 54}, {"brand": "Gucci", "name": "Flora", "usd_kg": 120.0, "kzt_ml": 59}, {"brand": "Gucci", "name": "Flora Gorgeous Orchid", "usd_kg": 130.0, "kzt_ml": 64}, {"brand": "Gucci", "name": "Bamboo", "usd_kg": 133.0, "kzt_ml": 66}, {"brand": "Gucci", "name": "Guilty For Men", "usd_kg": 135.0, "kzt_ml": 67}, {"brand": "Gucci", "name": "Guilty For Her", "usd_kg": 139.0, "kzt_ml": 69}, {"brand": "Gucci", "name": "Rush", "usd_kg": 160.0, "kzt_ml": 79}, {"brand": "Gucci", "name": "Gucci EDP II", "usd_kg": 176.0, "kzt_ml": 87}, {"brand": "Gucci", "name": "The Voice Of The Snake", "usd_kg": 230.0, "kzt_ml": 113}, {"brand": "Gucci", "name": "Osmanthus Nectar 2025", "usd_kg": 250.0, "kzt_ml": 123}, {"brand": "Jo Malone", "name": "English Pear & Sweet Pea", "usd_kg": 165.0, "kzt_ml": 81}, {"brand": "Jo Malone", "name": "Wood Sage & Sea Salt", "usd_kg": 190.0, "kzt_ml": 94}, {"brand": "Jo Malone", "name": "Myrrh & Tonka", "usd_kg": 205.0, "kzt_ml": 101}, {"brand": "Jo Malone", "name": "Oolong Tea", "usd_kg": 230.0, "kzt_ml": 113}, {"brand": "Kilian", "name": "Rolling In Love", "usd_kg": 175.0, "kzt_ml": 86}, {"brand": "Kilian", "name": "Blue Moon Ginger Dash", "usd_kg": 185.0, "kzt_ml": 91}, {"brand": "Kilian", "name": "Good Girl Gone Bad", "usd_kg": 215.0, "kzt_ml": 106}, {"brand": "Kilian", "name": "Straight To Heaven", "usd_kg": 218.0, "kzt_ml": 108}, {"brand": "Kilian", "name": "Love Don't Be Shy", "usd_kg": 230.0, "kzt_ml": 113}, {"brand": "Kilian", "name": "Apple Brandy", "usd_kg": 250.0, "kzt_ml": 123}, {"brand": "Kilian", "name": "Angel Share", "usd_kg": 265.0, "kzt_ml": 131}, {"brand": "Kilian", "name": "Intoxicated", "usd_kg": 265.0, "kzt_ml": 131}, {"brand": "Kilian", "name": "Angel's Share On The Rocks", "usd_kg": 300.0, "kzt_ml": 148}, {"brand": "Kilian", "name": "Black Phantom", "usd_kg": 315.0, "kzt_ml": 155}, {"brand": "Lancome", "name": "Tresor La Nuit", "usd_kg": 105.0, "kzt_ml": 52}, {"brand": "Lancome", "name": "Magie Noire", "usd_kg": 130.0, "kzt_ml": 64}, {"brand": "Lancome", "name": "Oud Bouquet", "usd_kg": 138.0, "kzt_ml": 68}, {"brand": "Lancome", "name": "La Vie Est Belle", "usd_kg": 142.0, "kzt_ml": 70}, {"brand": "Lancome", "name": "Climat", "usd_kg": 145.0, "kzt_ml": 72}, {"brand": "Lancome", "name": "La Vie Est Eclat", "usd_kg": 162.0, "kzt_ml": 80}, {"brand": "Lancome", "name": "Hypnose", "usd_kg": 170.0, "kzt_ml": 84}, {"brand": "Lancome", "name": "Idole", "usd_kg": 267.5, "kzt_ml": 132}, {"brand": "Le Labo", "name": "Santal 33", "usd_kg": 142.0, "kzt_ml": 70}, {"brand": "Le Labo", "name": "The Noir 29", "usd_kg": 190.0, "kzt_ml": 94}, {"brand": "Le Labo", "name": "Rose 31", "usd_kg": 250.0, "kzt_ml": 123}, {"brand": "Le Labo", "name": "Bergamote 22", "usd_kg": 287.0, "kzt_ml": 142}, {"brand": "Le Labo", "name": "Another 13", "usd_kg": 560.0, "kzt_ml": 276}, {"brand": "Louis Vuitton", "name": "L'Immensite", "usd_kg": 155.0, "kzt_ml": 76}, {"brand": "Louis Vuitton", "name": "Afternoon Swim", "usd_kg": 170.0, "kzt_ml": 84}, {"brand": "Louis Vuitton", "name": "Orage", "usd_kg": 215.0, "kzt_ml": 106}, {"brand": "Louis Vuitton", "name": "Matiere Noir", "usd_kg": 215.0, "kzt_ml": 106}, {"brand": "Louis Vuitton", "name": "Attrape Reves", "usd_kg": 220.0, "kzt_ml": 109}, {"brand": "Louis Vuitton", "name": "California Dream", "usd_kg": 230.0, "kzt_ml": 113}, {"brand": "Louis Vuitton", "name": "Ink Mark", "usd_kg": 235.0, "kzt_ml": 116}, {"brand": "Louis Vuitton", "name": "City of Stars", "usd_kg": 240.0, "kzt_ml": 118}, {"brand": "Louis Vuitton", "name": "Pacific Chill", "usd_kg": 250.0, "kzt_ml": 123}, {"brand": "Louis Vuitton", "name": "Moon Tale", "usd_kg": 250.0, "kzt_ml": 123}, {"brand": "Louis Vuitton", "name": "Rain Tea", "usd_kg": 250.0, "kzt_ml": 123}, {"brand": "Louis Vuitton", "name": "Les Sables Roses", "usd_kg": 250.0, "kzt_ml": 123}, {"brand": "Louis Vuitton", "name": "Pur Oud", "usd_kg": 255.0, "kzt_ml": 126}, {"brand": "Louis Vuitton", "name": "Cactus Garden", "usd_kg": 265.0, "kzt_ml": 131}, {"brand": "Louis Vuitton", "name": "Stellar Times", "usd_kg": 270.0, "kzt_ml": 133}, {"brand": "Louis Vuitton", "name": "Nouveau Monde", "usd_kg": 275.0, "kzt_ml": 136}, {"brand": "Louis Vuitton", "name": "Imagination", "usd_kg": 275.0, "kzt_ml": 136}, {"brand": "Louis Vuitton", "name": "Symphony", "usd_kg": 310.0, "kzt_ml": 153}, {"brand": "Louis Vuitton", "name": "Ombre Nomade", "usd_kg": 315.0, "kzt_ml": 155}, {"brand": "Louis Vuitton", "name": "Lovers", "usd_kg": 370.0, "kzt_ml": 183}, {"brand": "Louis Vuitton", "name": "Sun Song", "usd_kg": 370.0, "kzt_ml": 183}, {"brand": "Louis Vuitton", "name": "Myriad", "usd_kg": 425.0, "kzt_ml": 210}, {"brand": "MFK", "name": "Oud Satin Mood", "usd_kg": 175.0, "kzt_ml": 86}, {"brand": "MFK", "name": "Baccarat Rouge 540", "usd_kg": 238.0, "kzt_ml": 117}, {"brand": "MFK", "name": "Kurky", "usd_kg": 300.0, "kzt_ml": 148}, {"brand": "MFK", "name": "Grand Soir", "usd_kg": 370.0, "kzt_ml": 183}, {"brand": "MFK", "name": "724", "usd_kg": 370.0, "kzt_ml": 183}, {"brand": "Mancera", "name": "Rose Greedy", "usd_kg": 131.0, "kzt_ml": 65}, {"brand": "Mancera", "name": "Amberful 2024", "usd_kg": 170.0, "kzt_ml": 84}, {"brand": "Mancera", "name": "Cedrat Boise", "usd_kg": 192.0, "kzt_ml": 95}, {"brand": "Mancera", "name": "Red Tobacco", "usd_kg": 240.0, "kzt_ml": 118}, {"brand": "Mancera", "name": "Aoud Exclusif", "usd_kg": 275.0, "kzt_ml": 136}, {"brand": "Montale", "name": "Arabians Tonka", "usd_kg": 110.0, "kzt_ml": 54}, {"brand": "Montale", "name": "Chocolate Greedy", "usd_kg": 120.0, "kzt_ml": 59}, {"brand": "Montale", "name": "Absolue Vanille", "usd_kg": 126.0, "kzt_ml": 62}, {"brand": "Montale", "name": "Rose Elixir", "usd_kg": 160.0, "kzt_ml": 79}, {"brand": "Parfums De Marly", "name": "Pegasus", "usd_kg": 152.0, "kzt_ml": 75}, {"brand": "Parfums De Marly", "name": "Greenley", "usd_kg": 230.0, "kzt_ml": 113}, {"brand": "Parfums De Marly", "name": "Althair", "usd_kg": 245.0, "kzt_ml": 121}, {"brand": "Parfums De Marly", "name": "Herod", "usd_kg": 250.0, "kzt_ml": 123}, {"brand": "Parfums De Marly", "name": "Layton", "usd_kg": 265.0, "kzt_ml": 131}, {"brand": "Parfums De Marly", "name": "Delina Exclusif", "usd_kg": 280.0, "kzt_ml": 138}, {"brand": "Parfums De Marly", "name": "Valaya", "usd_kg": 285.0, "kzt_ml": 141}, {"brand": "Tom Ford", "name": "Tobacco Oud", "usd_kg": 125.0, "kzt_ml": 62}, {"brand": "Tom Ford", "name": "F Fabulous", "usd_kg": 148.0, "kzt_ml": 73}, {"brand": "Tom Ford", "name": "Lost Cherry", "usd_kg": 155.0, "kzt_ml": 76}, {"brand": "Tom Ford", "name": "Oud Wood", "usd_kg": 165.0, "kzt_ml": 81}, {"brand": "Tom Ford", "name": "Ombre Leather", "usd_kg": 175.0, "kzt_ml": 86}, {"brand": "Tom Ford", "name": "Soleil Blanc", "usd_kg": 175.0, "kzt_ml": 86}, {"brand": "Tom Ford", "name": "White Suede", "usd_kg": 175.0, "kzt_ml": 86}, {"brand": "Tom Ford", "name": "Tuscan Leather", "usd_kg": 175.0, "kzt_ml": 86}, {"brand": "Tom Ford", "name": "Vanilla Sex", "usd_kg": 200.0, "kzt_ml": 99}, {"brand": "Tom Ford", "name": "Bitter Peach", "usd_kg": 215.0, "kzt_ml": 106}, {"brand": "Tom Ford", "name": "Black Orchid", "usd_kg": 219.0, "kzt_ml": 108}, {"brand": "Tom Ford", "name": "Tobacco Vanille", "usd_kg": 220.0, "kzt_ml": 109}, {"brand": "Tom Ford", "name": "Neroli Portofino", "usd_kg": 230.0, "kzt_ml": 113}, {"brand": "Tom Ford", "name": "Noir Extreme", "usd_kg": 297.5, "kzt_ml": 147}, {"brand": "Tom Ford", "name": "Noir de Noir", "usd_kg": 330.0, "kzt_ml": 163}, {"brand": "YSL", "name": "Y L'Elixir", "usd_kg": 100.0, "kzt_ml": 49}, {"brand": "YSL", "name": "L'Homme Intense", "usd_kg": 118.0, "kzt_ml": 58}, {"brand": "YSL", "name": "La Nuit de L'Homme", "usd_kg": 120.0, "kzt_ml": 59}, {"brand": "YSL", "name": "Libre Flowers & Flames", "usd_kg": 135.0, "kzt_ml": 67}, {"brand": "YSL", "name": "Black Opium", "usd_kg": 147.0, "kzt_ml": 73}, {"brand": "YSL", "name": "Libre", "usd_kg": 155.0, "kzt_ml": 76}, {"brand": "YSL", "name": "Manifesto", "usd_kg": 173.0, "kzt_ml": 85}, {"brand": "YSL", "name": "Libre Vanille Couture", "usd_kg": 215.0, "kzt_ml": 106}, {"brand": "YSL", "name": "Tuxedo", "usd_kg": 230.0, "kzt_ml": 113}, {"brand": "YSL", "name": "Blouse Impertinent Rose", "usd_kg": 250.0, "kzt_ml": 123}, {"brand": "YSL", "name": "Supreme Bouquet", "usd_kg": 264.0, "kzt_ml": 130}, {"brand": "YSL", "name": "Babycat", "usd_kg": 270.0, "kzt_ml": 133}, {"brand": "Xerjoff", "name": "Mefisto", "usd_kg": 140.0, "kzt_ml": 69}, {"brand": "Xerjoff", "name": "Alexandria II", "usd_kg": 235.0, "kzt_ml": 116}, {"brand": "Xerjoff", "name": "More Than Words", "usd_kg": 270.0, "kzt_ml": 133}, {"brand": "Xerjoff", "name": "Gran Ballo", "usd_kg": 285.0, "kzt_ml": 141}, {"brand": "Xerjoff", "name": "Torino 21", "usd_kg": 285.0, "kzt_ml": 141}, {"brand": "Xerjoff", "name": "Naxos", "usd_kg": 490.0, "kzt_ml": 242}, {"brand": "Own Line", "name": "Musk Candle", "usd_kg": 120.0, "kzt_ml": 59}, {"brand": "Own Line", "name": "Leather Candle", "usd_kg": 120.0, "kzt_ml": 59}, {"brand": "Own Line", "name": "Fixative", "usd_kg": 150.0, "kzt_ml": 74}, {"brand": "Own Line", "name": "Spectrum", "usd_kg": 165.0, "kzt_ml": 81}, {"brand": "Own Line", "name": "Iris Oud", "usd_kg": 175.0, "kzt_ml": 86}, {"brand": "Own Line", "name": "Silk Roses", "usd_kg": 186.0, "kzt_ml": 92}, {"brand": "Own Line", "name": "Prince", "usd_kg": 200.0, "kzt_ml": 99}, {"brand": "Own Line", "name": "Al Balushi", "usd_kg": 210.0, "kzt_ml": 104}, {"brand": "Own Line", "name": "Dahab El Amazon", "usd_kg": 225.0, "kzt_ml": 111}, {"brand": "Own Line", "name": "Padishah", "usd_kg": 240.0, "kzt_ml": 118}, {"brand": "Own Line", "name": "Red Velvet", "usd_kg": 245.0, "kzt_ml": 121}, {"brand": "Own Line", "name": "Hatun", "usd_kg": 315.0, "kzt_ml": 155}];
+const list = document.getElementById('list');
+const q = document.getElementById('q');
+const chipsEl = document.getElementById('chips');
+const brands = [...new Set(DATA.map(i => i.brand))];
+let activeBrand = null;
+
+document.getElementById('total').textContent = DATA.length;
+
+chipsEl.innerHTML = '<button class="chip on" data-b="">Все</button>' +
+  brands.map(b => `<button class="chip" data-b="${b}">${b}</button>`).join('');
+chipsEl.addEventListener('click', e => {
+  const c = e.target.closest('.chip'); if (!c) return;
+  chipsEl.querySelectorAll('.chip').forEach(x => x.classList.remove('on'));
+  c.classList.add('on');
+  activeBrand = c.dataset.b || null;
+  render();
+});
+
+const fmt$ = n => '$' + (n % 1 ? n.toFixed(1) : n);
+function render() {
+  const term = q.value.trim().toLowerCase();
+  const items = DATA.filter(i =>
+    (!activeBrand || i.brand === activeBrand) &&
+    (!term || i.name.toLowerCase().includes(term) || i.brand.toLowerCase().includes(term))
+  );
+  document.getElementById('count').textContent = items.length ? `Показано: ${items.length}` : '';
+  document.getElementById('empty').style.display = items.length ? 'none' : 'block';
+  const byBrand = {};
+  items.forEach(i => (byBrand[i.brand] = byBrand[i.brand] || []).push(i));
+  list.innerHTML = Object.entries(byBrand).map(([b, arr]) => `
+    <section class="brand">
+      <h2>${b} <small>${arr.length}</small></h2>
+      <div class="card">
+        <div class="cols"><div class="nm">Аромат</div><div class="p1">$/кг</div><div class="p2">₸/мл</div></div>
+        ${arr.map(i => `<div class="row"><div class="nm">${i.name}</div><div class="p1">${fmt$(i.usd_kg)}</div><div class="p2">${i.kzt_ml} ₸</div></div>`).join('')}
+      </div>
+    </section>`).join('');
+}
+q.addEventListener('input', render);
+render();
+</script>
+</body>
+</html>
